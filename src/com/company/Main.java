@@ -7,23 +7,20 @@ public class Main {
     static int a;
     static boolean gameStatus = true;
     static String input;
+	static Spel spel;
 
     public static void main(String[] args) {
 	System.out.println("Welkom bij Ganzenbord! Je staat op start. Gooi je dobbelsteen (g):");
 
+	Dobbelsteen dobbelsteen = new Dobbelsteen();
+
+	Spel jojo = new Spel();
+
+	Speler speler = new Speler();
 	spelUitleg();
+	jojo.gameLoop(dobbelsteen);
 
-	while(gameStatus == true) {
-		Scanner scanner = new Scanner(System.in);
-		input = scanner.nextLine();
 
-		if (input.toLowerCase().equals("g")) {
-			gooiDobbelsteen();
-			controleerPlaats();
-		} else {
-			System.out.println("De input is onjuist. Type g om de dobbelsteen te gooien");
-		}
-	}
     }
 
 	static void spelUitleg() {
@@ -38,70 +35,23 @@ public class Main {
 		+ "\n---------------------------------");
 		}
 
-	static void gooiDobbelsteen() {
-		Random random = new Random();
-		a = random.nextInt(6) + 1;
-		plaatsNummer += a;
-		}
 
-	static void controleerPlaats() {
-		if(plaatsNummer == 23) {
-			System.out.println("Je staat op " + plaatsNummer + ". De gevangenis. Game over!");
-			gameOver();
-			gameStatus = false;
-		} else if (plaatsNummer >= 63) {
-			gameWinnaar();
-		} else if(plaatsNummer == 25 || plaatsNummer == 45) {
-			System.out.println("Helaas! Je bent terecht gekomen op " + plaatsNummer + ". Je begint weer vanaf start.");
-			plaatsNummer = 1;
-		} else if ((plaatsNummer % 10)== 0) {
-			switch(plaatsNummer) {
-				case 10:
-					System.out.println("Je staat op 10!");
-					break;
-				case 20:
-					System.out.println("Je staat op 20!");
-					break;
-				case 30:
-					System.out.println("Je staat op 30!");
-					break;
-				case 40:
-					System.out.println("Je staat op 40!");
-					break;
-				case 50:
-					System.out.println("Je staat op 50!");
-					break;
-				case 60:
-					System.out.println("Je staat op 60!");
-					break;
-			}
-			System.out.println("Ga " + a + " stappen verder!");
-			plaatsNummer += a;
 
-			if(plaatsNummer >= 63) {
-				gameWinnaar();
-			}
 
-			System.out.println("Je staat nu op " + plaatsNummer);
-		} else {
-			System.out.println("Je staat nu op " + plaatsNummer + ". Je staat veilig!");
-		}
 
-		}
-
-	static void gameWinnaar() {
-		if(plaatsNummer == 63) {
-			System.out.println("Je staat op 63. Je hebt gewonnen!");
-		} else {
-			System.out.println("Je bent plaats 63 gepasseerd. Je hebt gewonnen!");
-		}
-		plaatsNummer = 0;
-
-		spelUitleg();
-		}
-
-	static void gameOver() {
-		System.out.println("Helaas, je hebt verloren!");
-		}
+//	static void gameWinnaar() {
+//		if(plaatsNummer == 63) {
+//			System.out.println("Je staat op 63. Je hebt gewonnen!");
+//		} else {
+//			System.out.println("Je bent plaats 63 gepasseerd. Je hebt gewonnen!");
+//		}
+//		plaatsNummer = 0;
+//
+//		spelUitleg();
+//		}
+//
+//	static void gameOver() {
+//		System.out.println("Helaas, je hebt verloren!");
+//		}
     }
 
