@@ -10,13 +10,16 @@ public class Main {
 	static Spel spel;
 
     public static void main(String[] args) {
-	System.out.println("Welkom bij Ganzenbord! Je staat op start. Gooi je dobbelsteen (g):");
+	System.out.println("Welkom bij Ganzenbord! Vul je naam in om een speler aan te maken:");
+
+	Speler p1 = new Speler();
+	String p1Naam = Scanner.nextLine();
+	p1.setNaam(p1Naam);
 
 	Dobbelsteen dobbelsteen = new Dobbelsteen();
 
 	Spel jojo = new Spel();
 
-	Speler speler = new Speler();
 	spelUitleg();
 	jojo.gameLoop(dobbelsteen);
 
